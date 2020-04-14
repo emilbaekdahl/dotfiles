@@ -24,27 +24,27 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+export TERM="xterm-256color"
 
-export FZF_DEFAULT_COMMAND='fd --type f'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-
+# Alias
 alias vim="nvim"
 alias v="nvim"
 alias ctags="`brew --prefix`/bin/ctags"
 
-export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-export TERM="xterm-256color"
-export KEYTIMEOUT=1
+# fzf
+export FZF_DEFAULT_COMMAND='fd --type f'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# rbenv (Ruby version management)
 eval "$(rbenv init -)"
 
-export PATH="/Users/emilbaekdahl/.pyenv/bin:$PATH"
+# n (Node version management)
+export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
+
+# pyenv (Python version management)
 eval "$(pyenv init -)"
-
-export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
-
-source /Users/emilbaekdahl/.ghcup/env
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export GPG_TTY=$(tty)
 
+export BAT_THEME="OneHalfDark"
